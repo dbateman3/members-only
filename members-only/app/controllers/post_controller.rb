@@ -6,7 +6,7 @@ class PostController < ApplicationController
   end
 
   def create
-  	@post = current_user.post.build(post_params)
+  	@post = current_user.posts.build(post_params)
   	if @post.save?
   		flash[:success] = "Your post was created"
   		redirect_to root_url
@@ -29,6 +29,7 @@ class PostController < ApplicationController
   		flash[:danger] = "Please log in"
   		redirect_to root_url
   	end
+  end
 
   	def post_params
   		params.require(:post).permit(:title, :body)
